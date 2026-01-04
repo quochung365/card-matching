@@ -22,12 +22,14 @@ export async function POST(req: NextRequest) {
     } else {
       gameState = getGame(gameId) || {
         id: gameId,
-        status: 'waiting',
+        status: 'waiting' as const,
         cards: [],
         players: [],
         currentPlayerId: null,
         flippedCards: [],
-        cardCount: 20,
+        cardCount: 20 as const,
+        winnerId: null,
+        mode: 'multiplayer' as const,
       };
 
       if (gameState.players.length >= 2) {
